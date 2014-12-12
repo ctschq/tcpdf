@@ -5459,14 +5459,13 @@ if (!class_exists('TCPDF', false)) {
 							$img->readImageBlob($svgimg);
 						} else {
 							if(substr($file,0,5) == 'data:') {
-				                                $dataUri = explode(',',$file);
-				                                if(substr($dataUri[0],-6) == 'base64'){
-				                                	$dataUri[1] = base64_decode($dataUri[1]);
-				                                }
-					                        $img->readImageBlob($dataUri[1]);
-                        				}
-				                        $img->readImage($file);
-						}
+				                $dataUri = explode(',',$file);
+				                if(substr($dataUri[0],-6) == 'base64'){
+				                    $dataUri[1] = base64_decode($dataUri[1]);
+				                }
+					            $img->readImageBlob($dataUri[1]);
+                            }
+				        }
 						if ($resize) {
 							$img->resizeImage($neww, $newh, 10, 1, false);
 						}
@@ -19378,8 +19377,8 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Sets the opening SVG element handler function for the XML parser. (*** TO BE COMPLETED ***)
 		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
-		 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on. 
+		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+		 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
 		 * @access protected
@@ -19770,7 +19769,7 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Sets the closing SVG element handler function for the XML parser.
 		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
+		 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
 		 * @access protected
@@ -19808,7 +19807,7 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Sets the character data handler function for the XML parser.
 		 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-		 * @param string $data The second parameter, data, contains the character data as a string. 
+		 * @param string $data The second parameter, data, contains the character data as a string.
 		 * @author Nicola Asuni
 		 * @since 5.0.000 (2010-05-02)
 		 * @access protected
